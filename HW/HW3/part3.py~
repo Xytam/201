@@ -1,0 +1,24 @@
+# File:    part3.py
+# Author:  Jake Horvers
+# Date:    10/01/14
+# Section: 7
+# E-mail:  horvers1@umbc.edu
+# Description: Prints an empty box
+print("Greetings user! This program will print an empty box")
+width=int(input("Enter the width of your box "))
+height=int(input("Enter the height of your box: "))
+firstrowcount=0
+lastrowcount=0
+heightcount=1
+blanks=(width-5)
+while(firstrowcount<width):
+    print("*",end="")
+    firstrowcount+=1
+print()
+while(heightcount<height):
+    print("*"," "*blanks,"*")
+    heightcount+=1
+while(lastrowcount<width):
+      print("*",end="")
+      lastrowcount+=1
+print()

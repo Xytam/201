@@ -1,0 +1,9 @@
+To decide if a number is prime or not a programmer could check the divisibility of every number less than it not including itself and one and if returns any whole number, it is not prime.
+
+To check if a word is a palindrome, a programmer can compare the first and last value and write a loop that increments the counter from the beginning by one and decrements the counter from the end by one each iteration of the loop. Then, on each incrementation, check the value of the letter by using a boolean comparison statement. If they match, continue looping until the end of the loop, if they do not match, it is not a palindrome.
+
+To find the highest number in a list, a programmer can compare position1 in the list with position 2 and if position 2 is greater than position 1, set position 2 to a variable that holds the largest integer value, a loop will be implemented to compare position 2 with 3 and if position 2 is bigger, 2 will be compared with position 4 but if position 3 is larger than position 2, position 3 will be stored in the saved integer. The loop will continue until the end of the list storing the larger of two compared numbers. 
+
+To sort and array of 1000 books, 
+
+To find the factorial of a number, a programmer will use a loop to multiply the given number to each number below it and store the number in a variable and continue until the counter reaches 1 and saves the variable.

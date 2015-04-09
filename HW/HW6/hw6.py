@@ -1,0 +1,130 @@
+#GCD() finds the Greatest common divisor of 2 numbers
+#Input: num1,num2
+#Output: GCD of num1 and num2
+def GCD(num1,num2):
+    #uses Euclidean Algorithm to find GCD
+    #and stores it it num1
+    while num2:
+        num1, num2 = num2, num1%num2
+    return("The GCD is: ",num1)
+#isPerfect() checks against a list to determine perfectness
+#Input:num1
+#Output:Whether num1 is perfect or not
+def isPerfect(num1):
+    perfectList=[]
+    #list of first few known perfects
+    for i in range(1,num1++):
+        if(num%i==0):
+            perfectList.append(i)
+    listSum=0
+    for j in range(0,len(perfectList)):
+        
+#goldbach() finds the goldbach decompositions of any given number greater than 4 and even
+#Input:num1
+#Output: The 2 primes that equal num1
+def goldbach(num1):
+    statement=''
+    #checks every value in perfect with every other
+    #and if they sum to num1, it prints it as a decomp.
+    for i in range (0,len(perfects)):
+        for j in range (0,len(perfects)):
+            if(perfects[i]+perfects[j]==num1):
+                print('The goldbach decomposition of ',num1,' is ',perfects[i],' and ',perfects[j])
+            else:
+                pass
+#primeFactors() determines the prime factors of a number
+#Input: num1
+#Output:Prime factorization of num1
+def primeFactors(num1):
+    primfac= []
+    d = 2
+    #nested while loops determines evenness then primeness
+    while d*d <= num1:
+        while (num1 % d) == 0:
+            #repeats multiple factors(9 is 3 and 3)
+            primfac.append(d)
+            num1 /= d
+        d += 1
+    #1 is not prime
+    if num1 > 1:
+       primfac.append(num1)
+    return (primfac," are your prime factors.")    
+
+#getNumber calls the menu and reads menu choice it then takes the correct input and calls the corresponding method
+#Input: message(printMenu()), minimum(lowest choice in menu)
+#Output: Varied based on menu choice
+def getNumber(message,minimum):
+    #reads until the input is 5 which makes keepReadingIn false
+    keepReadingIn=True
+    while(keepReadingIn==True):
+        #reads in menu selection
+        readIn=int(input(message))
+    #makes sure selection is valid
+        if(readIn<minimum or readIn>5):
+            print("Invalid menu option.")
+        elif(readIn==5):
+            keepReading=False
+            return "Quitting..."
+        #makes menu selection and reads correct input
+        #then calls corresponding method
+        else:
+                if(readIn==1):
+                    num1isPos=False
+                    while(num1isPos==False):
+                        number1=int(input("Please enter a positive integer: "))
+                        if(number1>0):
+                            num1isPos=True
+                        else:
+                            num1isPos=False
+                    num2isPos=False
+                    while(num2isPos==False):
+                        number2=int(input("Please enter a positive integer: "))
+                        if(number2>0):
+                            num2isPos=True
+                        else:
+                            num2isPos=False
+                    print(GCD(number1,number2))
+                elif(readIn==2):
+                    num1isPos=False
+                    while(num1isPos==False):
+                        number1=int(input("Please enter a positive integer: "))
+                        if(number1>0):
+                            num1isPos=True
+                        else:
+                            num1isPos=False
+                    print(isPerfect(number1))
+                elif(readIn==3):
+                    num1isPos=False
+                    while(num1isPos==False):
+                        number1=int(input("Please enter a positive even integer greater than 4: "))
+                        if(number1<5):
+                            print("Number not acceptable")
+                            num1isPos=False
+                        else:
+                            num1isPos=True
+                    print(goldbach(number1))
+                else:
+                    num1isPos=False
+                    while(num1isPos==False):
+                        number1=int(input("Please enter a positive integer: "))
+                        if(number1>0):
+                            num1isPos=True
+                        else:
+                            num1isPos=False
+                    print(primeFactors(number1))
+                printMenu()
+#printMenu() makes and print the menu given
+#Input:None
+#Output:None
+def printMenu():
+    menu=["Please enter a choice: ","1. Greatest common divisor","2. Perfect number check","3. Goldbach decomposition","4. Prime Factors","5. Quit"]
+    for i in range(0,6):
+        print(menu[i])
+    return ''
+#main () calls the getNumber command to run the menu
+#Input: menul, minimum value for menu
+#output: Response to corresponding value in getNumbers()
+def main():
+    return(getNumber(printMenu(),1))
+
+main()

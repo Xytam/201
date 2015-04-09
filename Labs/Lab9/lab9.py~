@@ -1,0 +1,64 @@
+def getSum(gradesList):
+    sumValue = 0
+    #loops over all values, incrementally adding each one
+    for i in range(0,len(gradesList)):
+        sumValue = sumValue + gradesList[i]
+
+    return sumValue
+def getAverage(gradesList):
+    sumValue = getSum(gradesList)
+    average = sumValue/len(gradesList)
+
+    return average
+def letterGrading(letterGrade):
+    if(letterGrade>=90):
+        return('A')
+    elif(letterGrade>=80 and letterGrade<90):
+        return('B')
+    elif(letterGrade>=70 and letterGrade<80):
+        return('C')
+    elif(letterGrade>=60 and letterGrade<70):
+        return('D')
+    else:
+        return('F')
+
+
+filename="grades.txt"
+f=open(filename,'r')
+
+line1=f.readline(1)
+line2=f.readline(2)
+line3=f.readline(3)
+line1List=line1.split()
+line2List=line2.split()
+line3List=line3.split()
+p1Grade=[]
+p2Grade=[]
+p3Grade=[]
+grade1=0
+grade2=0
+grade3=0
+
+for i in range(1,int(((len(line1List)-1)/2))):
+    p1Grade.append(int(line1List[i])*int(line1List[i+1]))
+    i+=1
+for i in range(1,int(((len(line2List)-1)/2))):
+    p2Grade.append(int(line2List[i])*int(line2List[i+1]))
+    i+=1
+for i in range(1,int(((len(line3List)-1)/2))):
+    p3Grade.append(int(line3List[i])*int(line3List[i+1]))
+    i+=1
+grade1=getAverage(p1Grade)
+grade2=getAverage(p2Grade)
+grade3=getAverage(p3Grade)
+classGrades=[grade1,grade2,grade3]
+
+l1=(line1List[0],": ",grade1," - ",letterGrading(grade1))
+l2=(line2List[0],": ",grade2," - ",letterGrading(grade2))
+l3=(line3List[0],": ",grade3," - ",letterGrading(grade3))
+
+
+writeFile=open('grade_report.txt','w')
+writeFile.write(l1)
+writeFile.write(l2)
+writeFile.write(l3)

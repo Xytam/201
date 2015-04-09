@@ -1,0 +1,13 @@
+width=int(input("Input the width: "))
+height=int(input("Input the height: "))
+num=1
+counter=1
+heightcounter=1
+while(heightcounter<=height):
+    counter=1
+    while(counter<=width):
+        print(num,end="")
+        counter+=1
+        num+=1
+    print()
+    heightcounter+=1

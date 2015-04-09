@@ -1,0 +1,39 @@
+def base(decimal ,base) :
+    list = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    otherbase = ""
+    while decimal != 0 :
+        otherbase = list[decimal % base] + otherbase
+        decimal    = decimal / base
+    return otherbase
+print("This is a filter program that will convert your text file into ASCII val\
+ues...")
+fileName=str(input("Enter the name of the file: "))
+readFile=open(fileName,'r')
+contents=readFile.read()
+replacementContents=""
+validBase=False
+while(validBase==False):
+    baseIn=int(input("Enter a base between 2 and 9: "))
+    if(baseIn>=2 and baseIn<=9):
+        validBase=True
+    else:
+        validBase=False
+for i in range(0,len(contents)):
+    if(contents[i].isalpha()):
+        asciiValue=ord(contents[i])
+        replacementContents+=str(base(asciiValue,baseIn))
+        replacementContents+=" "
+    else:
+        replacementContents+=" .. "
+#for i in range (0,len(contents)):
+#    tempContent=0
+#    if(contents[i].isalpha()):
+#        tempContent+=int(contents[i],base)
+#        replacementContents+=str(tempContent)
+#    else:
+#        replacementContents+=" .. "
+newFileName=str(str(base)+'_'+str(fileName))
+writeFile=open(newFileName,"w")
+writeFile.write(replacementContents)
+writeFile.close()
+readFile.close()

@@ -1,0 +1,175 @@
+def main():
+    #Initializes tiles and playing loop variables
+    print("Welcome to Connect Four!")
+    p1='X'
+    p2='O'
+    rows=0
+    columns=0
+    keepPlaying=True
+    #keeps looping until they want to stop playing
+    while(keepPlaying==True):
+        #makes sure rows are read in properly
+        rows=input('Please enter a number of rows: ')
+        validRow=False
+        while(not validRow):
+            if(rows.isdigit()):
+                rows=int(rows)
+                if(rows<5):
+                    rows=input('Please enter a valid choice: ')
+                else:
+                    validRow=True
+            else:
+                rows=input('Please enter a valid choice: ')
+        
+        #makes sure columns are read in properly
+        columns=input('Please enter a number of columns: ')
+        validCol=False
+        while(not validCol):
+            if(columns.isdigit()):
+                columns=int(columns)
+                if(columns<5):
+                    columns=input('Please enter a valid choice: ')
+                else:
+                    validCol=True
+            else:
+                columns=input('Please enter a valid choice: ')
+        
+        #Makes it player 1s turn and generates the board
+        turn='1'
+        Board = generateBoard(rows,columns)
+        #keeps playing until there is a winner (or draw)
+        noWinner=True
+        while noWinner==True:
+            print('Players %s\'s turn. ' % turn)
+            #decides player 1 or player 2
+            if turn == '1':
+                #prints the board, gets the move for player one and applies it to the board
+                printboard(Board,columns,rows)
+                move=getMove(Board,columns)
+                move=int(move)
+                makeMove(Board,p1,move,rows)
+                #checks to see if the game is won/drawn
+                if isDraw(Board,columns,rows):
+                    winner = 'The game is a draw!'
+                    noWinner=False
+
+                if isWinner(Board, p1,rows,columns):
+                    winner = 'Player 1 wins'
+                    noWinner=False
+                #changes turn
+                turn = '2'
+            else:
+                #prints the board, gets the move for player two and applies it to the board
+                printboard(Board,columns,rows)
+                move=getMove(Board,columns)
+                move=int(move)
+                makeMove(Board,p2,move,rows)
+                #checks to see if the game is won/drawn
+                if isWinner(Board, p2,rows,columns):
+                    winner = 'Player 2 wins!'
+                    noWinner=False
+                if isDraw(Board,columns,rows):
+                    winner = 'The game is a draw!'
+                    noWinner=False
+                #changes turn
+                turn = '1'
+            #ensures the game is/isn't a draw
+            if isDraw(Board,columns,rows):
+                winner = 'The game is a draw!'
+                noWinner=False
+
+        printboard(Board,columns,rows)
+        print(winner)
+        keepPlaying=playAgain()
+
+def printboard(board,columns,rows):
+    for j in range(rows):
+        for i in range(columns):
+            print(board[i][j],end="")
+        print()
+    return board
+
+def generateBoard(rows,columns):
+    board = []
+    for x in range(columns):
+        board.append(['_'] * rows)
+    return board
+
+def makeMove(board, player, moveColumn,rows):
+    for y in range(rows-1, -1, -1):
+        if board[moveColumn][y] == '_':
+            board[moveColumn][y] = player
+            return board
+
+def isValidMove(board, move,columns):
+    if not move.isdigit():
+        return False
+    move=int(move)-1
+    if move < 0 or move >= (columns):
+        return False
+    if board[move][0] != '_':
+        return False
+    return True
+
+def getMove(board,columns):
+    print('Please enter a move: ')
+    valid=True
+    while valid:
+        move=input()
+        if isValidMove(board, move,columns):
+            realMove=int(move)-1
+            valid=False
+            return realMove
+        else:
+            print("Please enter a valid choice: ")
+
+def isDraw(board,columns,rows):
+    for x in range(columns):
+        for y in range(rows):
+            if board[x][y] == '_':
+                return False
+    return True
+
+def isWinner(board, tile,rows,columns):
+    # check horizontal
+    for y in range(rows):
+        for x in range(columns - 3):
+            if board[x][y] == tile and board[x+1][y] == tile and board[x+2][y] == tile and board[x+3][y] == tile:
+                return True
+
+    # check vertical
+    for x in range(columns):
+        for y in range(rows - 3):
+            if board[x][y] == tile and board[x][y+1] == tile and board[x][y+2] == tile and board[x][y+3] == tile:
+                return True
+
+    # check / diagonal
+    for x in range(columns - 3):
+        for y in range(3, rows):
+            if board[x][y] == tile and board[x+1][y-1] == tile and board[x+2][y-2] == tile and board[x+3][y-3] == tile:
+                return True
+
+    # check \ diagonal
+    for x in range(columns - 3):
+        for y in range(rows - 3):
+            if board[x][y] == tile and board[x+1][y+1] == tile and board[x+2][y+2] == tile and board[x+3][y+3] == tile:
+                return True
+
+    return False
+
+
+
+
+
+def playAgain():
+    a=0
+    while(a==0):
+        yesOrNo=str(input('Would you like to play again? (y/n): '))
+        if(yesOrNo=='y' or yesOrNo=='n'):
+            a=1
+    if(yesOrNo=='y'):
+        return True
+    else:
+        return False 
+
+main()

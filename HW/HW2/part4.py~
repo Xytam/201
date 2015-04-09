@@ -1,0 +1,6 @@
+Switch1 = str(input("Switch number one (y/n): "))
+Switch2 = str(input("Switch number two (y/n): "))
+if((Switch1 == "y" and Switch2 == "y") or (Switch1 == "n" and Switch2 == "n")):
+    print("The generator is off")
+else:
+    print("The generator is on")

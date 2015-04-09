@@ -1,0 +1,33 @@
+#File: part1.py
+#Author: Jake Horvers
+#Date: 09/22/114
+#Section: 4
+#E-mail: horvers1@umbc.edu
+#Description: Uses if/else input to diagnose
+print("Hello User! This program is designed to dianose how horribly sick you are!")
+fever = str(input("Do you have a fever? (y/n): "))
+if(fever == ("y")):
+   rash = str(input("Do you have a rash? (y/n): "))
+   if(fever == ("y") and rash == ("y")):
+      print("Diagnosis: Measles")
+   elif(fever == ("y") and rash == ("n")):
+       ear = str(input("Do your ears hurt? (y/n): "))
+       if(ear == ("y")):
+          print("Diagnosis: Ear Infection")
+       else:
+          print("Diagnosis: Flu")
+   else:
+      print("Invalid response...")
+
+else:
+   nose = str(input("Do you have a stuffy nose? (y/n): "))
+   if(fever == ("n") and nose == ("n")):
+       print("Diagnosis: Hypochondriac")
+
+   elif(fever == ("n") and nose == ("y")):
+       print("Diagnosis: Head Cold")
+
+
+
+
+

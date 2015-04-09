@@ -1,0 +1,16 @@
+# File:    part5.py
+# Author:  Jake Horvers
+# Date:    10/1/14
+# Section: 7
+# E-mail:  horvers1@umbc.edu
+# Description: Detetmines modulus without division
+
+a=int(input("Enter the first number: "))
+b=int(input("Enter the number to mod it by: "))
+
+while(a>=0):
+    if(a>=b):
+       a= a-b
+    else:
+        print(a)
+        a=-1

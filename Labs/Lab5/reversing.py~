@@ -1,0 +1,5 @@
+strlist=[]
+word=str(input("Enter a string to reverse: "))
+#strlist.append(word)
+word=word[::-1]
+print(word)
